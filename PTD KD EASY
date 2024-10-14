@@ -1,6 +1,5 @@
 repeat wait() until game:IsLoaded()
-wait(5)
-local a = 1
+wait(2)
 game:GetService("ReplicatedStorage").Packages._Index:FindFirstChild("sleitnick_knit@1.7.0").knit.Services.WaveService.RF.AutoSkip:InvokeServer()
 game:GetService("ReplicatedStorage").Packages._Index:FindFirstChild("sleitnick_knit@1.7.0").knit.Services.WaveService.RF.SpeedUp:InvokeServer()
 repeat wait(1)
@@ -26,9 +25,7 @@ local args = {
 }
 
 game:GetService("ReplicatedStorage").Packages._Index:FindFirstChild("sleitnick_knit@1.7.0").knit.Services.UnitService.RF.UpgradeUnit:InvokeServer(unpack(args))
-a = a+1
-until a >= 120
-repeat wait() until game:GetService('Players').LocalPlayer.PlayerGui.MainUI.Frames.Results.Visible == true
+until game:GetService('Players').LocalPlayer.PlayerGui.MainUI.Frames.Results.Visible == true
 
 local args = {
     [1] = "Kingdom-3",
