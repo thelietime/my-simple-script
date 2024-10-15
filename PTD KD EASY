@@ -10,12 +10,12 @@ local args = {
 }
 
 game:GetService("ReplicatedStorage").Packages._Index:FindFirstChild("sleitnick_knit@1.7.0").knit.Services.UnitService.RF.PlaceUnit:InvokeServer(unpack(args))
-
 local args = {
     [1] = workspace.Game.Map.PlacedUnits:FindFirstChild("Demon Lord")
 }
 
 game:GetService("ReplicatedStorage").Packages._Index:FindFirstChild("sleitnick_knit@1.7.0").knit.Services.UnitService.RF.UpgradeUnit:InvokeServer(unpack(args))
+
 local args = {
     [1] = "Enderguy",
     [2] = CFrame.new(-13035.3203125, 551.7487182617188, 683.8350830078125) * CFrame.Angles(-0, 0, -0)
