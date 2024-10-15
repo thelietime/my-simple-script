@@ -5,13 +5,13 @@ game:GetService("ReplicatedStorage").Packages._Index:FindFirstChild("sleitnick_k
 game:GetService("ReplicatedStorage").Packages._Index:FindFirstChild("sleitnick_knit@1.7.0").knit.Services.WaveService.RF.SpeedUp:InvokeServer()
 repeat wait(1)
 local args = {
-    [1] = "Demon Lord",
+    [1] = "Demon Lord/Range II",
     [2] = CFrame.new(-13035.3203125, 551.7487182617188, 683.8350830078125) * CFrame.Angles(-0, 0, -0)
 }
 
 game:GetService("ReplicatedStorage").Packages._Index:FindFirstChild("sleitnick_knit@1.7.0").knit.Services.UnitService.RF.PlaceUnit:InvokeServer(unpack(args))
 local args = {
-    [1] = workspace.Game.Map.PlacedUnits:FindFirstChild("Demon Lord")
+    [1] = workspace.Game.Map.PlacedUnits:FindFirstChild("Demon Lord/Range II")
 }
 
 game:GetService("ReplicatedStorage").Packages._Index:FindFirstChild("sleitnick_knit@1.7.0").knit.Services.UnitService.RF.UpgradeUnit:InvokeServer(unpack(args))
