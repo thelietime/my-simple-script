@@ -5,56 +5,71 @@ game:GetService("ReplicatedStorage").Packages._Index:FindFirstChild("sleitnick_k
 repeat wait(1)
     local args = {
         [1] = "Demon Lord/Range II",
-        [2] = CFrame.new(-13185.99609375, 587.9391479492188, 2903.065673828125) * CFrame.Angles(-0, 0, -0)
+        [2] = CFrame.new(-13180.99609375, 587.9391479492188, 2903.065673828125) * CFrame.Angles(-0, 0, -0)
     }
     
     game:GetService("ReplicatedStorage").Packages._Index:FindFirstChild("sleitnick_knit@1.7.0").knit.Services.UnitService.RF.PlaceUnit:InvokeServer(unpack(args))
+    print("check 1")
     local args = {
         [1] = workspace.Game.Map.PlacedUnits:FindFirstChild("Demon Lord")
     }
     
     game:GetService("ReplicatedStorage").Packages._Index:FindFirstChild("sleitnick_knit@1.7.0").knit.Services.UnitService.RF.UpgradeUnit:InvokeServer(unpack(args))    
+    print("check 2")
     local args = {
         [1] = "Enderguy",
-        [2] = CFrame.new(-13185.99609375, 587.9391479492188, 2903.065673828125) * CFrame.Angles(-0, 0, -0)
+        [2] = CFrame.new(-13180.99609375, 587.9391479492188, 2903.065673828125) * CFrame.Angles(-0, 0, -0)
     }
     
     game:GetService("ReplicatedStorage").Packages._Index:FindFirstChild("sleitnick_knit@1.7.0").knit.Services.UnitService.RF.PlaceUnit:InvokeServer(unpack(args))
+    print("check 3")
     local args = {
         [1] = workspace.Game.Map.PlacedUnits:FindFirstChild("Enderguy")
     }
     
     game:GetService("ReplicatedStorage").Packages._Index:FindFirstChild("sleitnick_knit@1.7.0").knit.Services.UnitService.RF.UpgradeUnit:InvokeServer(unpack(args))    
+    print("check 4")
     local args = {
         [1] = "Fire Guardian",
-        [2] = CFrame.new(-13185.99609375, 587.9391479492188, 2903.065673828125) * CFrame.Angles(-0, 0, -0)
+        [2] = CFrame.new(-13180.99609375, 587.9391479492188, 2903.065673828125) * CFrame.Angles(-0, 0, -0)
     }
     
     game:GetService("ReplicatedStorage").Packages._Index:FindFirstChild("sleitnick_knit@1.7.0").knit.Services.UnitService.RF.PlaceUnit:InvokeServer(unpack(args))
+    print("check 5")
     local args = {
         [1] = workspace.Game.Map.PlacedUnits:FindFirstChild("Fire Guardian")
     }
     
     game:GetService("ReplicatedStorage").Packages._Index:FindFirstChild("sleitnick_knit@1.7.0").knit.Services.UnitService.RF.UpgradeUnit:InvokeServer(unpack(args))    
+    print("check 6")
     local args = {
         [1] = "Inferno Lantern",
         [2] = CFrame.new(-13197.3046875, 587.261962890625, 2912.08837890625) * CFrame.Angles(-0, 0, -0)
     }
     
     game:GetService("ReplicatedStorage").Packages._Index:FindFirstChild("sleitnick_knit@1.7.0").knit.Services.UnitService.RF.PlaceUnit:InvokeServer(unpack(args))
+    print("check 7")
     local args = {
         [1] = workspace.Game.Map.PlacedUnits:FindFirstChild("Inferno Lantern")
     }
     
     game:GetService("ReplicatedStorage").Packages._Index:FindFirstChild("sleitnick_knit@1.7.0").knit.Services.UnitService.RF.UpgradeUnit:InvokeServer(unpack(args))    
-    
+    print("check 8")
     local args = {
-     [1] = "Miner",
-     [2] = CFrame.new(-13035.3203125, 551.7487182617188, 683.8350830078125) * CFrame.Angles(-0, 0, -0)
+        [1] = "Miner",
+        [2] = CFrame.new(-13197.3046875, 587.261962890625, 2912.08837890625) * CFrame.Angles(-0, 0, -0)
     }
-
+    
     game:GetService("ReplicatedStorage").Packages._Index:FindFirstChild("sleitnick_knit@1.7.0").knit.Services.UnitService.RF.PlaceUnit:InvokeServer(unpack(args))
+    print("check 9")
+    local args = {
+        [1] = workspace.Game.Map.PlacedUnits:FindFirstChild("Miner")
+    }
+    
+    game:GetService("ReplicatedStorage").Packages._Index:FindFirstChild("sleitnick_knit@1.7.0").knit.Services.UnitService.RF.UpgradeUnit:InvokeServer(unpack(args))
+    print("check 10")
 until game:GetService('Players').LocalPlayer.PlayerGui.MainUI.Frames.Results.Visible == true
+print("check 11")
 local args = {
     [1] = "Haunted Graveyard-3",
     [2] = "Haunted Graveyard",
@@ -62,3 +77,4 @@ local args = {
 }
 
 game:GetService("ReplicatedStorage").Packages._Index:FindFirstChild("sleitnick_knit@1.7.0").knit.Services.ElevatorService.RF.Join:InvokeServer(unpack(args))
+print("check 12")
