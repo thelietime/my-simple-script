@@ -12,7 +12,7 @@ local args = {
 game:GetService("ReplicatedStorage").Packages._Index:FindFirstChild("sleitnick_knit@1.7.0").knit.Services.UnitService.RF.PlaceUnit:InvokeServer(unpack(args))
 
 local args = {
-    [1] = workspace.Game.Map.PlacedUnits:FindFirstChild("Demon Lord/Range II")
+    [1] = workspace.Game.Map.PlacedUnits:FindFirstChild("Demon Lord")
 }
 
 game:GetService("ReplicatedStorage").Packages._Index:FindFirstChild("sleitnick_knit@1.7.0").knit.Services.UnitService.RF.UpgradeUnit:InvokeServer(unpack(args))
