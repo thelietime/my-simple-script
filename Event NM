@@ -43,14 +43,14 @@ repeat wait(1)
     game:GetService("ReplicatedStorage").Packages._Index:FindFirstChild("sleitnick_knit@1.7.0").knit.Services.UnitService.RF.UpgradeUnit:InvokeServer(unpack(args))    
     print("check 6")
     local args = {
-        [1] = "Inferno Lantern",
+        [1] = "Rosy Apollo",
         [2] = CFrame.new(-13197.3046875, 587.261962890625, 2912.08837890625) * CFrame.Angles(-0, 0, -0)
     }
     
     game:GetService("ReplicatedStorage").Packages._Index:FindFirstChild("sleitnick_knit@1.7.0").knit.Services.UnitService.RF.PlaceUnit:InvokeServer(unpack(args))
     print("check 7")
     local args = {
-        [1] = workspace.Game.Map.PlacedUnits:FindFirstChild("Inferno Lantern")
+        [1] = workspace.Game.Map.PlacedUnits:FindFirstChild("Rosy Apollo")
     }
     
     game:GetService("ReplicatedStorage").Packages._Index:FindFirstChild("sleitnick_knit@1.7.0").knit.Services.UnitService.RF.UpgradeUnit:InvokeServer(unpack(args))    
