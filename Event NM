@@ -4,7 +4,7 @@ game:GetService("ReplicatedStorage").Packages._Index:FindFirstChild("sleitnick_k
 game:GetService("ReplicatedStorage").Packages._Index:FindFirstChild("sleitnick_knit@1.7.0").knit.Services.WaveService.RF.SpeedUp:InvokeServer()
 repeat wait(1)
     local args = {
-        [1] = "Demon Lord/Range II",
+        [1] = "Demon Lord/Sharpness II",
         [2] = CFrame.new(-13180.99609375, 587.9391479492188, 2903.065673828125) * CFrame.Angles(-0, 0, -0)
     }
     
