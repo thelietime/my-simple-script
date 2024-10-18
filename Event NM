@@ -1,75 +1,79 @@
 repeat wait() until game:IsLoaded()
 wait(2)
+local Unit1 = "Demon Lord/Sharpness II"
+local Upgrade1 = "Demon Lord"
+local Unit2 = "Demonic Agni"
+local Upgrade2 = "Demonic Agni"
+local Unit3 = "Necromancer"
+local Upgrade3 = "Necromancer"
+local Unit4 = "Light Pyromancer"
+local Upgrade4 = "Light Pyromancer"
+local Unit5 = ""
+local Upgrade5 = ""
+local Unit6 = ""
+local Upgrade6 = ""
+local Unit7 = "Miner"
+local Upgrade7 = "Miner"
+
 game:GetService("ReplicatedStorage").Packages._Index:FindFirstChild("sleitnick_knit@1.7.0").knit.Services.WaveService.RF.AutoSkip:InvokeServer()
 game:GetService("ReplicatedStorage").Packages._Index:FindFirstChild("sleitnick_knit@1.7.0").knit.Services.WaveService.RF.SpeedUp:InvokeServer()
 repeat wait(1)
     local args = {
-        [1] = "Demon Lord/Sharpness II",
+        [1] = Unit1,
         [2] = CFrame.new(-13180.99609375, 587.9391479492188, 2903.065673828125) * CFrame.Angles(-0, 0, -0)
     }
     
     game:GetService("ReplicatedStorage").Packages._Index:FindFirstChild("sleitnick_knit@1.7.0").knit.Services.UnitService.RF.PlaceUnit:InvokeServer(unpack(args))
-    print("check 1")
     local args = {
-        [1] = workspace.Game.Map.PlacedUnits:FindFirstChild("Demon Lord")
+        [1] = workspace.Game.Map.PlacedUnits:FindFirstChild(Upgrade1)
     }
     
     game:GetService("ReplicatedStorage").Packages._Index:FindFirstChild("sleitnick_knit@1.7.0").knit.Services.UnitService.RF.UpgradeUnit:InvokeServer(unpack(args))    
-    print("check 2")
     local args = {
-        [1] = "Enderguy",
+        [1] = Unit2,
         [2] = CFrame.new(-13180.99609375, 587.9391479492188, 2903.065673828125) * CFrame.Angles(-0, 0, -0)
     }
     
     game:GetService("ReplicatedStorage").Packages._Index:FindFirstChild("sleitnick_knit@1.7.0").knit.Services.UnitService.RF.PlaceUnit:InvokeServer(unpack(args))
-    print("check 3")
     local args = {
-        [1] = workspace.Game.Map.PlacedUnits:FindFirstChild("Enderguy")
+        [1] = workspace.Game.Map.PlacedUnits:FindFirstChild(Upgrade2)
     }
     
     game:GetService("ReplicatedStorage").Packages._Index:FindFirstChild("sleitnick_knit@1.7.0").knit.Services.UnitService.RF.UpgradeUnit:InvokeServer(unpack(args))    
-    print("check 4")
     local args = {
-        [1] = "Fire Guardian",
+        [1] = Unit3,
         [2] = CFrame.new(-13180.99609375, 587.9391479492188, 2903.065673828125) * CFrame.Angles(-0, 0, -0)
     }
     
     game:GetService("ReplicatedStorage").Packages._Index:FindFirstChild("sleitnick_knit@1.7.0").knit.Services.UnitService.RF.PlaceUnit:InvokeServer(unpack(args))
-    print("check 5")
     local args = {
-        [1] = workspace.Game.Map.PlacedUnits:FindFirstChild("Fire Guardian")
+        [1] = workspace.Game.Map.PlacedUnits:FindFirstChild(Upgrade3)
     }
     
     game:GetService("ReplicatedStorage").Packages._Index:FindFirstChild("sleitnick_knit@1.7.0").knit.Services.UnitService.RF.UpgradeUnit:InvokeServer(unpack(args))    
-    print("check 6")
     local args = {
-        [1] = "Rosy Apollo",
+        [1] = Unit4,
         [2] = CFrame.new(-13197.3046875, 587.261962890625, 2912.08837890625) * CFrame.Angles(-0, 0, -0)
     }
     
     game:GetService("ReplicatedStorage").Packages._Index:FindFirstChild("sleitnick_knit@1.7.0").knit.Services.UnitService.RF.PlaceUnit:InvokeServer(unpack(args))
-    print("check 7")
     local args = {
-        [1] = workspace.Game.Map.PlacedUnits:FindFirstChild("Rosy Apollo")
+        [1] = workspace.Game.Map.PlacedUnits:FindFirstChild(Upgrade4)
     }
     
     game:GetService("ReplicatedStorage").Packages._Index:FindFirstChild("sleitnick_knit@1.7.0").knit.Services.UnitService.RF.UpgradeUnit:InvokeServer(unpack(args))    
-    print("check 8")
     local args = {
-        [1] = "Miner",
+        [1] = Unit7,
         [2] = CFrame.new(-13197.3046875, 587.261962890625, 2912.08837890625) * CFrame.Angles(-0, 0, -0)
     }
     
     game:GetService("ReplicatedStorage").Packages._Index:FindFirstChild("sleitnick_knit@1.7.0").knit.Services.UnitService.RF.PlaceUnit:InvokeServer(unpack(args))
-    print("check 9")
     local args = {
-        [1] = workspace.Game.Map.PlacedUnits:FindFirstChild("Miner")
+        [1] = workspace.Game.Map.PlacedUnits:FindFirstChild(Upgrade7)
     }
     
     game:GetService("ReplicatedStorage").Packages._Index:FindFirstChild("sleitnick_knit@1.7.0").knit.Services.UnitService.RF.UpgradeUnit:InvokeServer(unpack(args))
-    print("check 10")
 until game:GetService('Players').LocalPlayer.PlayerGui.MainUI.Frames.Results.Visible == true
-print("check 11")
 local args = {
     [1] = "Haunted Graveyard-3",
     [2] = "Haunted Graveyard",
@@ -77,4 +81,3 @@ local args = {
 }
 
 game:GetService("ReplicatedStorage").Packages._Index:FindFirstChild("sleitnick_knit@1.7.0").knit.Services.ElevatorService.RF.Join:InvokeServer(unpack(args))
-print("check 12")
