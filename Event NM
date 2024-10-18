@@ -1,9 +1,9 @@
 repeat wait() until game:IsLoaded()
 wait(2)
-local Unit1 = "Demon Lord/Sharpness II"
-local Upgrade1 = "Demon Lord"
-local Unit2 = "Demonic Agni"
-local Upgrade2 = "Demonic Agni"
+local Unit1 = "Demonic Agni"
+local Upgrade1 = "Demonic Agni"
+local Unit2 = "Demon Lord/Sharpness II"
+local Upgrade2 = "Demon Lord"
 local Unit3 = "Necromancer"
 local Upgrade3 = "Necromancer"
 local Unit4 = "Light Pyromancer"
