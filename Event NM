@@ -12,8 +12,8 @@ local Unit5 = ""
 local Upgrade5 = ""
 local Unit6 = ""
 local Upgrade6 = ""
-local Unit7 = "Miner"
-local Upgrade7 = "Miner"
+local Unit7 = "Necromancer"
+local Upgrade7 = "Necromancer"
 
 game:GetService("ReplicatedStorage").Packages._Index:FindFirstChild("sleitnick_knit@1.7.0").knit.Services.WaveService.RF.AutoSkip:InvokeServer()
 game:GetService("ReplicatedStorage").Packages._Index:FindFirstChild("sleitnick_knit@1.7.0").knit.Services.WaveService.RF.SpeedUp:InvokeServer()
