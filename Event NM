@@ -53,7 +53,7 @@ repeat wait(1)
     game:GetService("ReplicatedStorage").Packages._Index:FindFirstChild("sleitnick_knit@1.7.0").knit.Services.UnitService.RF.UpgradeUnit:InvokeServer(unpack(args))    
     local args = {
         [1] = Unit4,
-        [2] = CFrame.new(-13195.3046875, 587.261962890625, 2912.08837890625) * CFrame.Angles(-0, 0, -0)
+        [2] = CFrame.new(-13179.99609375, 587.9391479492188, 2903.065673828125) * CFrame.Angles(-0, 0, -0)
     }
     
     game:GetService("ReplicatedStorage").Packages._Index:FindFirstChild("sleitnick_knit@1.7.0").knit.Services.UnitService.RF.PlaceUnit:InvokeServer(unpack(args))
