@@ -1,5 +1,5 @@
 repeat wait() until game:IsLoaded()
-wait(2)
+wait(5)
 local Unit1 = "Skeleton Horseman/Swiftness III"
 local Upgrade1 = "Skeleton Horseman"
 local Unit2 = "Demonic Agni"
