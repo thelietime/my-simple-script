@@ -19,7 +19,7 @@ game:GetService("ReplicatedStorage").Packages._Index:FindFirstChild("sleitnick_k
 game:GetService("ReplicatedStorage").Packages._Index:FindFirstChild("sleitnick_knit@1.7.0").knit.Services.WaveService.RF.SpeedUp:InvokeServer()
 repeat wait()
 local args = {
-        [1] = Unit1,
+        [1] = "Skeleton Horseman/Swiftness III",
         [2] = CFrame.new(-2870.7002, math.random(185, 190), -612.506714) * CFrame.Angles(-0, 0, -0)
     }
     
