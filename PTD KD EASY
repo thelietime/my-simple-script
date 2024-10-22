@@ -1,66 +1,89 @@
 repeat wait() until game:IsLoaded()
-if game.PlaceId == 15939811130 then
-wait(2)
+wait(5)
+local Unit1 = "Skeleton Horseman/Swiftness III"
+local Upgrade1 = "Skeleton Horseman"
+local Unit2 = "Demonic Agni"
+local Upgrade2 = "Demonic Agni"
+local Unit3 = "Pennyclown"
+local Upgrade3 = "Pennyclown"
+local Unit4 = "Shiny/Foxy"
+local Upgrade4 = "Foxy"
+local Unit5 = ""
+local Upgrade5 = ""
+local Unit6 = ""
+local Upgrade6 = ""
+local Unit7 = "Miner"
+local Upgrade7 = "Miner"
+
 game:GetService("ReplicatedStorage").Packages._Index:FindFirstChild("sleitnick_knit@1.7.0").knit.Services.WaveService.RF.AutoSkip:InvokeServer()
 game:GetService("ReplicatedStorage").Packages._Index:FindFirstChild("sleitnick_knit@1.7.0").knit.Services.WaveService.RF.SpeedUp:InvokeServer()
-repeat wait(1)
+repeat wait()
 local args = {
-    [1] = "Demon Lord/Sharpness II",
-    [2] = CFrame.new(-13048.1640625, 552.1206665039062, 696.0964965820312) * CFrame.Angles(-0, 0, -0)
-}
-
-game:GetService("ReplicatedStorage").Packages._Index:FindFirstChild("sleitnick_knit@1.7.0").knit.Services.UnitService.RF.PlaceUnit:InvokeServer(unpack(args))
-local args = {
-    [1] = workspace.Game.Map.PlacedUnits:FindFirstChild("Demon Lord")
-}
-
-game:GetService("ReplicatedStorage").Packages._Index:FindFirstChild("sleitnick_knit@1.7.0").knit.Services.UnitService.RF.UpgradeUnit:InvokeServer(unpack(args))
-
-local args = {
-    [1] = "Light Pyromancer",
-    [2] = CFrame.new(-13035.3203125, 551.7487182617188, 683.8350830078125) * CFrame.Angles(-0, 0, -0)
-}
-
-game:GetService("ReplicatedStorage").Packages._Index:FindFirstChild("sleitnick_knit@1.7.0").knit.Services.UnitService.RF.PlaceUnit:InvokeServer(unpack(args))
-local args = {
-    [1] = workspace.Game.Map.PlacedUnits:FindFirstChild("Light Pyromancer")
-}
-
-game:GetService("ReplicatedStorage").Packages._Index:FindFirstChild("sleitnick_knit@1.7.0").knit.Services.UnitService.RF.UpgradeUnit:InvokeServer(unpack(args))
-local args = {
-    [1] = "Pennyclown",
-    [2] = CFrame.new(-13048.1640625, 552.1206665039062, 696.0964965820312) * CFrame.Angles(-0, 0, -0)
-}
-
-game:GetService("ReplicatedStorage").Packages._Index:FindFirstChild("sleitnick_knit@1.7.0").knit.Services.UnitService.RF.PlaceUnit:InvokeServer(unpack(args))
-local args = {
-    [1] = workspace.Game.Map.PlacedUnits:FindFirstChild("Pennyclown")
-}
-
-game:GetService("ReplicatedStorage").Packages._Index:FindFirstChild("sleitnick_knit@1.7.0").knit.Services.UnitService.RF.UpgradeUnit:InvokeServer(unpack(args))
-local args = {
-     [1] = "Demonic Agni",
-     [2] = CFrame.new(-13048.1640625, 552.1206665039062, 696.0964965820312) * CFrame.Angles(-0, 0, -0)
-}
-game:GetService("ReplicatedStorage").Packages._Index:FindFirstChild("sleitnick_knit@1.7.0").knit.Services.UnitService.RF.PlaceUnit:InvokeServer(unpack(args))
-local args = {
-    [1] = workspace.Game.Map.PlacedUnits:FindFirstChild("Demonic Agni")
-}
+        [1] = "Skeleton Horseman/Swiftness III",
+        [2] = CFrame.new(-13048.1640625, 552.1206665039062, 696.0964965820312) * CFrame.Angles(-0, 0, -0)
+    }
     
-game:GetService("ReplicatedStorage").Packages._Index:FindFirstChild("sleitnick_knit@1.7.0").knit.Services.UnitService.RF.UpgradeUnit:InvokeServer(unpack(args))    
-local args = {
-    [1] = "Miner",
-    [2] = CFrame.new(-13035.3203125, 551.7487182617188, 683.8350830078125) * CFrame.Angles(-0, 0, -0)
-}
-
-game:GetService("ReplicatedStorage").Packages._Index:FindFirstChild("sleitnick_knit@1.7.0").knit.Services.UnitService.RF.PlaceUnit:InvokeServer(unpack(args))
-local args = {
-    [1] = workspace.Game.Map.PlacedUnits:FindFirstChild("Miner")
-}
+    game:GetService("ReplicatedStorage").Packages._Index["sleitnick_knit@1.7.0"].knit.Services.UnitService.RF.PlaceUnit:InvokeServer(unpack(args))
+wait(1)
+    local args = {
+        [1] = workspace.Game.Map.PlacedUnits:FindFirstChild(Upgrade1)
+    }
     
-game:GetService("ReplicatedStorage").Packages._Index:FindFirstChild("sleitnick_knit@1.7.0").knit.Services.UnitService.RF.UpgradeUnit:InvokeServer(unpack(args))    
+    game:GetService("ReplicatedStorage").Packages._Index:FindFirstChild("sleitnick_knit@1.7.0").knit.Services.UnitService.RF.UpgradeUnit:InvokeServer(unpack(args))    
+wait(1)
+    local args = {
+        [1] = Unit2,
+        [2] = CFrame.new(-13035.3203125, 551.7487182617188, 683.8350830078125) * CFrame.Angles(-0, 0, -0)
+    }
+    
+    game:GetService("ReplicatedStorage").Packages._Index["sleitnick_knit@1.7.0"].knit.Services.UnitService.RF.PlaceUnit:InvokeServer(unpack(args))
+wait(1)
+    local args = {
+        [1] = workspace.Game.Map.PlacedUnits:FindFirstChild(Upgrade2)
+    }
+    
+    game:GetService("ReplicatedStorage").Packages._Index:FindFirstChild("sleitnick_knit@1.7.0").knit.Services.UnitService.RF.UpgradeUnit:InvokeServer(unpack(args))   
+wait(1)
+    local args = {
+        [1] = Unit3,
+        [2] = CFrame.new(-13048.1640625, 552.1206665039062, 696.0964965820312) * CFrame.Angles(-0, 0, -0)
+    }
+    
+    game:GetService("ReplicatedStorage").Packages._Index["sleitnick_knit@1.7.0"].knit.Services.UnitService.RF.PlaceUnit:InvokeServer(unpack(args))
+wait(1)
+    local args = {
+        [1] = workspace.Game.Map.PlacedUnits:FindFirstChild(Upgrade3)
+    }
+    
+    game:GetService("ReplicatedStorage").Packages._Index:FindFirstChild("sleitnick_knit@1.7.0").knit.Services.UnitService.RF.UpgradeUnit:InvokeServer(unpack(args))   
+wait(1)
+    local args = {
+        [1] = Unit4,
+        [2] = CFrame.new(-13048.1640625, 552.1206665039062, 696.0964965820312) * CFrame.Angles(-0, 0, -0)
+    }
+    
+    game:GetService("ReplicatedStorage").Packages._Index["sleitnick_knit@1.7.0"].knit.Services.UnitService.RF.PlaceUnit:InvokeServer(unpack(args))
+wait(1)
+    local args = {
+        [1] = workspace.Game.Map.PlacedUnits:FindFirstChild(Upgrade4)
+    }
+    
+    game:GetService("ReplicatedStorage").Packages._Index:FindFirstChild("sleitnick_knit@1.7.0").knit.Services.UnitService.RF.UpgradeUnit:InvokeServer(unpack(args))    
+wait(1)
+    local args = {
+        [1] = Unit7,
+        [2] = CFrame.new(-13048.1640625, 552.1206665039062, 696.0964965820312) * CFrame.Angles(-0, 0, -0)
+    }
+    
+    game:GetService("ReplicatedStorage").Packages._Index["sleitnick_knit@1.7.0"].knit.Services.UnitService.RF.PlaceUnit:InvokeServer(unpack(args))
+wait(1)
+    local args = {
+        [1] = workspace.Game.Map.PlacedUnits:FindFirstChild(Upgrade7)
+    }
+    
+    game:GetService("ReplicatedStorage").Packages._Index:FindFirstChild("sleitnick_knit@1.7.0").knit.Services.UnitService.RF.UpgradeUnit:InvokeServer(unpack(args))
+wait(1)
 until game:GetService('Players').LocalPlayer.PlayerGui.MainUI.Frames.Results.Visible == true
-
 local args = {
     [1] = "Kingdom-3",
     [2] = "Kingdom",
@@ -68,4 +91,3 @@ local args = {
 }
 
 game:GetService("ReplicatedStorage").Packages._Index:FindFirstChild("sleitnick_knit@1.7.0").knit.Services.ElevatorService.RF.Join:InvokeServer(unpack(args))
-end
