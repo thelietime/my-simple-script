@@ -32,10 +32,10 @@ getgenv().Cards = { -- All cards after FocusWave wave ends
     "+ Range I",
     "- Cooldown I",
     "+ Attack I",
-    "+ Gain 2 Random Effects Tier 1",
+    "+ Gain 2 Random Effects Tier 1"
+    "+ Range II",
     "- Cooldown II",
     "+ Attack II",
-    "+ Range II",
     "+ Gain 2 Random Effects Tier 2",
     "- Cooldown III",
     "+ Range III",
