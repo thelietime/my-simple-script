@@ -6,6 +6,7 @@ getgenv().PriorityCards = { -- Priority tags when wave = FocusWave
     "- Cooldown II",
     "+ Range II",
     "+ Attack II",
+    "- Cooldown II",
     "+ Gain 2 Random Effects Tier 2",
     "- Cooldown III",
     "+ Range III",
