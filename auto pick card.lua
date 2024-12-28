@@ -1,14 +1,14 @@
 getgenv().FocusWave = 20 -- Priority limit wave
 getgenv().PriorityCards = { -- Priority tags when wave = FocusWave
+    "- Cooldown I",
+    "- Cooldown II",
+    "- Cooldown III",
     "+ Range I",
     "+ Attack I",
     "+ Gain 2 Random Effects Tier 1",
-    "- Cooldown II",
     "+ Range II",
     "+ Attack II",
-    "- Cooldown II",
     "+ Gain 2 Random Effects Tier 2",
-    "- Cooldown III",
     "+ Range III",
     "+ Attack III",
     "+ Gain 2 Random Effects Tier 3"
