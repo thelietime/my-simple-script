@@ -14,17 +14,17 @@ getgenv().PriorityCards = { -- Priority tags when wave = FocusWave
     "+ Gain 2 Random Effects Tier 3"
 }
 getgenv().Cards = { -- All cards after FocusWave wave ends
-    "+ Explosive Deaths I",
-    "+ Explosive Deaths II",
-    "+ Explosive Deaths III",
     "+ Gain 2 Random Curses Tier 3",
-    "+ Gain 2 Random Curses Tier 2",
-    "+ Gain 2 Random Curses Tier 1",
     "+ Enemy Regen I",
     "+ Enemy Regen II",
     "+ Enemy Regen III",
+    "+ Explosive Deaths I",
+    "+ Explosive Deaths II",
+    "+ Explosive Deaths III",
     "+ Enemy Health I",
     "+ Enemy Health II",
+    "+ Gain 2 Random Curses Tier 2",
+    "+ Gain 2 Random Curses Tier 1",
     "+ Enemy Health III",
     "+ Boss Damage I",
     "+ Boss Damage II",
@@ -37,8 +37,8 @@ getgenv().Cards = { -- All cards after FocusWave wave ends
     "- Cooldown II",
     "+ Attack II",
     "+ Gain 2 Random Effects Tier 2",
-    "- Cooldown III",
     "+ Range III",
+    "- Cooldown III",
     "+ Attack III",
     "+ Gain 2 Random Effects Tier 3",
     "+ New Path"
