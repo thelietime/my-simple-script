@@ -1,33 +1,30 @@
 getgenv().FocusWave = 20 -- Priority limit wave
 getgenv().PriorityCards = { -- Priority tags when wave = FocusWave
-    "- Cooldown I",
     "+ Range I",
-    "+ Range II",
-    "+ Range III",
-    "- Cooldown II",
-    "- Cooldown III",
     "+ Attack I",
     "+ Gain 2 Random Effects Tier 1",
+    "- Cooldown II",
+    "+ Range II",
     "+ Attack II",
+    "- Cooldown II",
     "+ Gain 2 Random Effects Tier 2",
+    "- Cooldown III",
+    "+ Range III",
     "+ Attack III",
     "+ Gain 2 Random Effects Tier 3"
 }
 getgenv().Cards = { -- All cards after FocusWave wave ends
-    "+ Gain 2 Random Curses Tier 3",
-    "+ Enemy Regen I",
-    "+ Enemy Regen II",
-    "+ Enemy Regen III",
     "+ Explosive Deaths I",
     "+ Explosive Deaths II",
     "+ Explosive Deaths III",
-    "+ Enemy Speed I",
-    "+ Enemy Speed II",
-    "+ Enemy Speed III",
-    "+ Enemy Health I",
-    "+ Enemy Health II",
+    "+ Gain 2 Random Curses Tier 3",
     "+ Gain 2 Random Curses Tier 2",
     "+ Gain 2 Random Curses Tier 1",
+    "+ Enemy Regen I",
+    "+ Enemy Regen II",
+    "+ Enemy Regen III",
+    "+ Enemy Health I",
+    "+ Enemy Health II",
     "+ Enemy Health III",
     "+ Boss Damage I",
     "+ Boss Damage II",
@@ -35,17 +32,17 @@ getgenv().Cards = { -- All cards after FocusWave wave ends
     "+ Range I",
     "- Cooldown I",
     "+ Attack I",
-    "+ Gain 2 Random Effects Tier 1"
-    "+ Range II",
+    "+ Gain 2 Random Effects Tier 1",
     "- Cooldown II",
+    "+ Range II",
     "+ Attack II",
     "+ Gain 2 Random Effects Tier 2",
-    "+ Range III",
     "- Cooldown III",
+    "+ Range III",
     "+ Attack III",
     "+ Gain 2 Random Effects Tier 3",
     "+ New Path"
- 
+
 }
 -- Priority from bottom to top in all items
 repeat task.wait() until game:IsLoaded()
