@@ -1,5 +1,6 @@
 getgenv().FocusWave = 20 -- Priority limit wave
 getgenv().PriorityCards = { -- Priority tags when wave = FocusWave
+    "+ New Path"
     "+ Range I",
     "+ Attack I",
     "+ Gain 2 Random Effects Tier 1",
@@ -11,10 +12,11 @@ getgenv().PriorityCards = { -- Priority tags when wave = FocusWave
     "- Cooldown III",
     "+ Range III",
     "+ Attack III",
-    "+ Gain 2 Random Effects Tier 3"
+    "+ Gain 2 Random Effects Tier 3",
     "+ New Path"
 }
 getgenv().Cards = { -- All cards after FocusWave wave ends
+    "+ New Path"
     "+ Explosive Deaths I",
     "+ Explosive Deaths II",
     "+ Explosive Deaths III",
