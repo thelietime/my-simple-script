@@ -1,0 +1,144 @@
+-- FINAL VERSION 4.0: Using the old logic (Output * 10) with the new prefix (\016)
+wait(5)
+-- [ Services and Remote Event Setup ]
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+local Players = game:GetService("Players")
+local player = Players.LocalPlayer
+local remoteEvent = ReplicatedStorage:WaitForChild("ByteNetReliable")
+
+-- [ Hardcoded Button Data ]
+-- This table uses the old logic (output * 10) but with the new prefix.
+local buttonData = {
+	["0"] =  "\016\000",
+	["1"] =  "\016\010",
+	["2"] =  "\016\020",
+	["5"] =  "\016\050",
+	["10"] = "\016\100",
+	["25"] = "\016\250"
+}
+
+-- [ UI Creation ]
+local function createUI()
+	-- Destroy any old version of this UI
+	local screenGui = Instance.new("ScreenGui", player:WaitForChild("PlayerGui"))
+	screenGui.Name = "ByteNetController"
+	screenGui.ResetOnSpawn = false
+
+	local mainFrame = Instance.new("Frame", screenGui)
+	mainFrame.Name = "MainFrame"
+	mainFrame.Size = UDim2.new(0, 500, 0, 110)
+	mainFrame.Position = UDim2.new(0.5, -250, 0, 10)
+	mainFrame.BackgroundColor3 = Color3.fromRGB(35, 35, 35)
+	mainFrame.BorderSizePixel = 0
+	mainFrame.Active = true
+
+	local uiCornerFrame = Instance.new("UICorner", mainFrame)
+	uiCornerFrame.CornerRadius = UDim.new(0, 8)
+	
+	local buttonsFrame = Instance.new("Frame", mainFrame)
+	buttonsFrame.Size = UDim2.new(1, 0, 0, 60)
+	buttonsFrame.Position = UDim2.new(0, 0, 0, 0)
+	buttonsFrame.BackgroundTransparency = 1
+	
+	local uiListLayout = Instance.new("UIListLayout", buttonsFrame)
+	uiListLayout.FillDirection = Enum.FillDirection.Horizontal
+	uiListLayout.HorizontalAlignment = Enum.HorizontalAlignment.Center
+	uiListLayout.VerticalAlignment = Enum.VerticalAlignment.Center
+	uiListLayout.SortOrder = Enum.SortOrder.LayoutOrder
+	uiListLayout.Padding = UDim.new(0, 10)
+
+	-- Draggable UI Logic
+	local isDragging = false
+	local dragStart, frameStart
+	mainFrame.InputBegan:Connect(function(input)
+		if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
+			isDragging = true
+			dragStart = input.Position
+			frameStart = mainFrame.Position
+			input.Changed:Connect(function()
+				if input.UserInputState == Enum.UserInputState.End then
+					isDragging = false
+				end
+			end)
+		end
+	end)
+	mainFrame.InputChanged:Connect(function(input)
+		if isDragging and (input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch) then
+			local delta = input.Position - dragStart
+			mainFrame.Position = UDim2.new(frameStart.X.Scale, frameStart.X.Offset + delta.X, frameStart.Y.Scale, frameStart.Y.Offset + delta.Y)
+		end
+	end)
+
+	-- Create buttons by looping through the hardcoded data
+	local sortedKeys = {}
+	for key in pairs(buttonData) do table.insert(sortedKeys, tonumber(key)) end
+	table.sort(sortedKeys)
+	
+	for _, valueKey in ipairs(sortedKeys) do
+		local buttonText = tostring(valueKey)
+		local button = Instance.new("TextButton", buttonsFrame)
+		button.Name = buttonText .. "_Button"
+		button.LayoutOrder = valueKey
+		button.Size = UDim2.new(0, 60, 0, 40)
+		button.BackgroundColor3 = Color3.fromRGB(80, 80, 80)
+		button.TextColor3 = Color3.fromRGB(255, 255, 255)
+		button.Font = Enum.Font.SourceSansBold
+		button.TextSize = 18
+		button.Text = buttonText
+		
+		local uiCornerButton = Instance.new("UICorner", button)
+		uiCornerButton.CornerRadius = UDim.new(0, 6)
+
+		button.MouseButton1Click:Connect(function()
+			local byteStringToSend = buttonData[button.Text]
+			local args = { buffer.fromstring(byteStringToSend) }
+			remoteEvent:FireServer(unpack(args))
+			print(string.format("Fired Remote for output '%s'. Sent hardcoded string: %q", button.Text, byteStringToSend))
+		end)
+	end
+
+	-- Create the custom input textbox
+	local customInputBox = Instance.new("TextBox", mainFrame)
+	customInputBox.Name = "CustomInput"
+	customInputBox.Size = UDim2.new(0.9, 0, 0, 40)
+	customInputBox.Position = UDim2.new(0.5, 0, 0, 65)
+	customInputBox.AnchorPoint = Vector2.new(0.5, 0)
+	customInputBox.BackgroundColor3 = Color3.fromRGB(25, 25, 25)
+	customInputBox.TextColor3 = Color3.fromRGB(225, 225, 225)
+	customInputBox.PlaceholderText = "Type a custom value and press Enter"
+	customInputBox.PlaceholderColor3 = Color3.fromRGB(150, 150, 150)
+	customInputBox.Font = Enum.Font.SourceSans
+	customInputBox.TextSize = 16
+	customInputBox.ClearTextOnFocus = false
+
+	local uiCornerInput = Instance.new("UICorner", customInputBox)
+	uiCornerInput.CornerRadius = UDim.new(0, 6)
+	
+	local uiStrokeInput = Instance.new("UIStroke", customInputBox)
+	uiStrokeInput.Color = Color3.fromRGB(120, 120, 120)
+	uiStrokeInput.Thickness = 1
+	
+	-- Event for when the user presses Enter
+	customInputBox.FocusLost:Connect(function(enterPressed)
+		if enterPressed and customInputBox.Text ~= "" then
+			local desiredOutput = tonumber(customInputBox.Text)
+			if desiredOutput then
+				-- NOTE: Using old logic (Output * 10)
+				local numericPart = desiredOutput * 10
+				local formattedStringPart = string.format("\\%03d", numericPart)
+				-- NOTE: Using new prefix (\016)
+				local fullByteString = "\016" .. formattedStringPart
+				
+				local args = { buffer.fromstring(fullByteString) }
+				remoteEvent:FireServer(unpack(args))
+				print(string.format("Fired Remote for custom output '%s'. Sent string: %q", customInputBox.Text, fullByteString))
+				customInputBox.Text = ""
+			else
+				print("Invalid input: Not a number.")
+				customInputBox.Text = ""
+			end
+		end
+	end)
+end
+
+createUI()
