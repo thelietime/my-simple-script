@@ -159,6 +159,7 @@ local WebhookUserId = ""
 -- Saved per-account UI/settings state.
 local SavedActivePage = "Auto Roll"
 local SavedWindowPosition = nil
+local SavedUIScale = nil
 local ResumeAutoRoll = false
 
 -- Roll counter fingerprint tracking.
@@ -993,6 +994,7 @@ local function saveConfig()
 
         activePage = SavedActivePage,
         windowPosition = serializeWindowPosition(),
+        uiScale = SavedUIScale,
     }
 
     local ok, encoded =
@@ -1124,6 +1126,10 @@ local function loadConfig()
                     tonumber(p.yOffset)
                 )
         end
+    end
+
+    if tonumber(data.uiScale) then
+        SavedUIScale = tonumber(data.uiScale)
     end
 end
 
@@ -1877,11 +1883,11 @@ Screen.Parent = PlayerGui
 
 Main = Instance.new("Frame")
 Main.AnchorPoint = Vector2.new(0.5, 0.5)
-Main.Size = UDim2.fromOffset(470, 570)
-Main.Position =
-    SavedWindowPosition
-    or UDim2.new(0.5, 0, 0.5, 0)
+Main.Size = UDim2.fromOffset(470, 675)
+Main.Position = UDim2.new(0.5, 0, 0.5, 0)
 
+-- Always start in the middle. SavedWindowPosition is kept only for
+-- backward config compatibility and is no longer restored.
 SavedWindowPosition = Main.Position
 Main.BackgroundColor3 = Color3.fromRGB(22, 22, 27)
 Main.BorderSizePixel = 0
@@ -1892,6 +1898,61 @@ makeCorner(Main, 10)
 MainStroke = Instance.new("UIStroke")
 MainStroke.Color = Color3.fromRGB(65, 65, 75)
 MainStroke.Parent = Main
+
+MainScale = Instance.new("UIScale")
+MainScale.Parent = Main
+
+function getMaximumFitScale()
+    local camera = workspace.CurrentCamera
+    local viewport =
+        camera
+        and camera.ViewportSize
+        or Vector2.new(1920, 1080)
+
+    -- Leave a small safe margin around the UI on phones/tablets.
+    local widthScale =
+        math.max(
+            0.25,
+            (viewport.X - 24) / 470
+        )
+
+    local heightScale =
+        math.max(
+            0.25,
+            (viewport.Y - 36) / 675
+        )
+
+    return math.clamp(
+        math.min(
+            1.5,
+            widthScale,
+            heightScale
+        ),
+        0.25,
+        1.5
+    )
+end
+
+function applySavedOrPhoneScale()
+    local maxFit =
+        getMaximumFitScale()
+
+    local desired =
+        tonumber(SavedUIScale)
+        or math.min(1, maxFit)
+
+    desired =
+        math.clamp(
+            desired,
+            0.25,
+            maxFit
+        )
+
+    MainScale.Scale = desired
+    SavedUIScale = desired
+end
+
+applySavedOrPhoneScale()
 
 Header = Instance.new("Frame")
 Header.Size = UDim2.new(1, 0, 0, 44)
@@ -2017,12 +2078,6 @@ MiscPage.Parent = Main
 
 ActivePage = "Auto Roll"
 
-PAGE_SIZES = {
-    ["Auto Roll"] = Vector2.new(470, 675),
-    ["Auto Farm"] = Vector2.new(470, 405),
-    ["Misc"] = Vector2.new(470, 650),
-}
-
 PickaxePopup = nil
 FarmPickaxePopup = nil
 LevelPopup = nil
@@ -2066,16 +2121,8 @@ function switchPage(pageName)
 
     Title.Text = pageName
 
-    local target = PAGE_SIZES[pageName]
-
-    TweenService:Create(
-        Main,
-        TweenInfo.new(0.18, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),
-        {
-            Size = UDim2.fromOffset(target.X, target.Y)
-        }
-    ):Play()
-
+    -- All pages use the same base window size now.
+    -- Only the bottom-right scale handle changes visual size.
     saveConfig()
 end
 
@@ -2101,43 +2148,209 @@ Close.MouseButton1Click:Connect(function()
     Screen:Destroy()
 end)
 
--- Dragging from the header.
+-- Dragging from the header (mouse + touch).
 do
     local dragging = false
-    local startMouse
-    local startPosition
+    local dragInput = nil
+    local startMouse = nil
+    local startPosition = nil
 
     Header.InputBegan:Connect(function(input)
-        if input.UserInputType == Enum.UserInputType.MouseButton1 then
+        if input.UserInputType == Enum.UserInputType.MouseButton1
+            or input.UserInputType == Enum.UserInputType.Touch
+        then
             dragging = true
+            dragInput = input
             startMouse = input.Position
             startPosition = Main.Position
         end
     end)
 
     UserInputService.InputChanged:Connect(function(input)
-        if dragging
-            and input.UserInputType == Enum.UserInputType.MouseMovement
-        then
-            local delta = input.Position - startMouse
+        if not dragging then
+            return
+        end
+
+        local valid =
+            input == dragInput
+            or (
+                dragInput
+                and dragInput.UserInputType == Enum.UserInputType.MouseButton1
+                and input.UserInputType == Enum.UserInputType.MouseMovement
+            )
+
+        if valid then
+            local delta =
+                input.Position
+                - startMouse
 
             Main.Position =
                 startPosition
-                + UDim2.fromOffset(delta.X, delta.Y)
+                + UDim2.fromOffset(
+                    delta.X / MainScale.Scale,
+                    delta.Y / MainScale.Scale
+                )
         end
     end)
 
     UserInputService.InputEnded:Connect(function(input)
-        if input.UserInputType == Enum.UserInputType.MouseButton1 then
-            if dragging then
-                SavedWindowPosition = Main.Position
-                saveConfig()
-            end
-
+        if dragging
+            and (
+                input == dragInput
+                or input.UserInputType == Enum.UserInputType.MouseButton1
+                or input.UserInputType == Enum.UserInputType.Touch
+            )
+        then
             dragging = false
+            dragInput = nil
         end
     end)
 end
+
+--==============================================================
+-- BOTTOM-RIGHT UI SCALE HANDLE
+-- Drag with mouse or touch.
+--==============================================================
+
+ResizeGrip = Instance.new("TextButton")
+ResizeGrip.AnchorPoint = Vector2.new(1, 1)
+ResizeGrip.Size = UDim2.fromOffset(32, 32)
+ResizeGrip.Position = UDim2.new(1, -5, 1, -5)
+ResizeGrip.BackgroundColor3 = Color3.fromRGB(42, 42, 48)
+ResizeGrip.Text = "◢"
+ResizeGrip.TextColor3 = Color3.fromRGB(220, 220, 230)
+ResizeGrip.TextSize = 17
+ResizeGrip.Font = Enum.Font.GothamBold
+ResizeGrip.ZIndex = 450
+ResizeGrip.Parent = Main
+makeCorner(ResizeGrip, 6)
+
+do
+    local scaling = false
+    local scaleInput = nil
+    local startPointer = nil
+    local startScale = 1
+    local startDistance = 1
+
+    local function centerPixels()
+        local camera = workspace.CurrentCamera
+        local viewport =
+            camera
+            and camera.ViewportSize
+            or Vector2.new(1920, 1080)
+
+        return Vector2.new(
+            viewport.X * Main.Position.X.Scale
+                + Main.Position.X.Offset,
+            viewport.Y * Main.Position.Y.Scale
+                + Main.Position.Y.Offset
+        )
+    end
+
+    local function beginScale(input)
+        scaling = true
+        scaleInput = input
+        startPointer = input.Position
+        startScale = MainScale.Scale
+
+        local center = centerPixels()
+
+        startDistance =
+            math.max(
+                40,
+                (Vector2.new(
+                    input.Position.X,
+                    input.Position.Y
+                ) - center).Magnitude
+            )
+    end
+
+    ResizeGrip.InputBegan:Connect(function(input)
+        if input.UserInputType == Enum.UserInputType.MouseButton1
+            or input.UserInputType == Enum.UserInputType.Touch
+        then
+            beginScale(input)
+        end
+    end)
+
+    UserInputService.InputChanged:Connect(function(input)
+        if not scaling then
+            return
+        end
+
+        local valid =
+            input == scaleInput
+            or (
+                scaleInput
+                and scaleInput.UserInputType == Enum.UserInputType.MouseButton1
+                and input.UserInputType == Enum.UserInputType.MouseMovement
+            )
+
+        if not valid then
+            return
+        end
+
+        local center =
+            centerPixels()
+
+        local distance =
+            math.max(
+                40,
+                (Vector2.new(
+                    input.Position.X,
+                    input.Position.Y
+                ) - center).Magnitude
+            )
+
+        local maxFit =
+            getMaximumFitScale()
+
+        local nextScale =
+            math.clamp(
+                startScale
+                * (distance / startDistance),
+                0.25,
+                maxFit
+            )
+
+        MainScale.Scale = nextScale
+        SavedUIScale = nextScale
+    end)
+
+    UserInputService.InputEnded:Connect(function(input)
+        if scaling
+            and (
+                input == scaleInput
+                or input.UserInputType == Enum.UserInputType.MouseButton1
+                or input.UserInputType == Enum.UserInputType.Touch
+            )
+        then
+            scaling = false
+            scaleInput = nil
+            SavedUIScale = MainScale.Scale
+            saveConfig()
+        end
+    end)
+end
+
+-- If the phone rotates or the viewport gets smaller, never allow
+-- the existing scale to extend beyond the visible screen.
+task.defer(function()
+    local camera = workspace.CurrentCamera
+
+    if camera then
+        camera:GetPropertyChangedSignal("ViewportSize"):Connect(function()
+            local maxFit =
+                getMaximumFitScale()
+
+            if MainScale.Scale > maxFit then
+                MainScale.Scale = maxFit
+                SavedUIScale = maxFit
+                saveConfig()
+            end
+        end)
+    end
+end)
 
 --==============================================================
 -- SHARED DROPDOWN HELPERS
